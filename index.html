@@ -161,12 +161,15 @@
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           const code = jsQR(imageData.data, canvas.width, canvas.height);
 
+          const output = document.getElementById('file-output');
+          const copyBtn = document.getElementById('copy-btn');
+
           if (code) {
-            document.getElementById('file-output').textContent = code.data;
-            document.getElementById('copy-btn').style.display = 'block';
+            output.textContent = code.data;
+            copyBtn.style.display = 'inline-block';
           } else {
-            document.getElementById('file-output').textContent = 'QR не найден';
-            document.getElementById('copy-btn').style.display = 'none';
+            output.textContent = 'QR не найден';
+            copyBtn.style.display = 'none';
           }
         };
         img.src = event.target.result;
